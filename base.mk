@@ -12,11 +12,17 @@ ifndef PREFIX
 install:
 	@echo Please specify a PREFIX.
 else
-install: do-install
+install: pre-install do-install register post-install
+endif
+
+register:
 	@echo PREFIX=$(PREFIX) > $(SIPAMA_DBDIR)/${NAME}
 	@cat package.mk >> $(SIPAMA_DBDIR)/${NAME}
-endif
 
 deinstall: do-deinstall
 	@rm $(SIPAMA_DBDIR)/${NAME}
 
+pre-install:
+	
+post-install:
+	
