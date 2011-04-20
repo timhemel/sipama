@@ -1,0 +1,3 @@
+# MAKE=make
+# SIPAMA_SRCDIR=/some/path/to/scripts
+# SIPAMA_DBDIR=/var/db/sipama
