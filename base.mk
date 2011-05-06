@@ -22,7 +22,7 @@ register:
 deinstall: do-deinstall
 	@rm $(SIPAMA_DBDIR)/${NAME}
 
-pre-install: xyz=xyz
-	
-post-install: xyz=xyz
-	
+pre-install: ;
+
+post-install: ;
+
