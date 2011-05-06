@@ -44,9 +44,9 @@ echo ========================================================
 find "$SIPAMA_DBDIR" -type f | while read f
 do
 	pkg=`basename $f`
-	name=`$MAKE -I "$SIPAMA_SRCDIR" -f $f name`
-	version=`$MAKE -I "$SIPAMA_SRCDIR" -f $f version`
-	prefix=`$MAKE -I "$SIPAMA_SRCDIR" -f $f prefix`
+	name=`$MAKE -I "$SIPAMA_SRCDIR" -f $f name 2>/dev/null`
+	version=`$MAKE -I "$SIPAMA_SRCDIR" -f $f version 2>/dev/null`
+	prefix=`$MAKE -I "$SIPAMA_SRCDIR" -f $f prefix 2>/dev/null`
 	printf "%-24s %s\n" "$name-$version" "$prefix"
 done
 
