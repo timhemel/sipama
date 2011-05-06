@@ -1,7 +1,5 @@
 #!/bin/sh
 
-# pklist.sh [pattern]
-
 testdir () {
 	if [ ! -d "$1" ]
 	then
@@ -18,6 +16,12 @@ testfile () {
 		echo Please make sure that SiPaMa is correctly installed
 		exit 1
 	fi
+}
+
+
+get_sipama_version () {
+	RELEASE=`$MAKE --no-print-directory -s -I "$SIPAMA_SRCDIR" -f "$SIPAMA_SRCDIR"/base.mk sipamarelease 2>/dev/null`
+	RELEASE="v$RELEASE"
 }
 
 
@@ -39,14 +43,15 @@ then
 fi
 testdir "$SIPAMA_DBDIR"
 
-printf "%-24s %s\n" "Package" "Installed in"
-echo ========================================================
-find "$SIPAMA_DBDIR" -type f -a \! -name '*.v?????' | while read f
-do
-	pkg=`basename $f`
-	name=`$MAKE -I "$SIPAMA_SRCDIR" -f $f name 2>/dev/null`
-	version=`$MAKE -I "$SIPAMA_SRCDIR" -f $f version 2>/dev/null`
-	prefix=`$MAKE -I "$SIPAMA_SRCDIR" -f $f prefix 2>/dev/null`
-	printf "%-24s %s\n" "$name-$version" "$prefix"
-done
+get_sipama_version
+
+# upgrade from nothing to release 00001
+if [ "$RELEASE" '<' 'v00001' ]
+then
+	echo "Upgrading to v00001..."
+	find "$SIPAMA_DBDIR" -type f -a \! -name '*.v?????' | while read f
+	do
+		sed -i.v00000 's/\(SIPAMA_\)\{0,1\}\(NAME\|VERSION\)/SIPAMA_\2/g' "$f"
+	done
+fi
 

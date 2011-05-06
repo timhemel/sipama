@@ -1,7 +1,13 @@
 CONFIGDIR=$$HOME/.sipama
 BINDIR=$$HOME/bin
 
-install:
+all:
+	@echo Use ${MAKE} install to install the software
+
+check-db-upgrade:
+	[ -d ${CONFIGDIR}/db ] && sh upgradedb.sh
+
+install: check-db-upgrade
 	mkdir -p ${CONFIGDIR}
 	cp base.mk ${CONFIGDIR}
 	cp local.sh.example ${CONFIGDIR}/local.sh

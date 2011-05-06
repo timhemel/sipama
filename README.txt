@@ -40,8 +40,8 @@ The package.mk file should have at least the following elements:
 
 include base.mk
 
-NAME=myprogram
-VERSION=2.0
+SIPAMA_NAME=myprogram
+SIPAMA_VERSION=2.0
 
 do-install:
 	# code to install the files
@@ -49,13 +49,13 @@ do-install:
 do-deinstall:
 	# code to deinstall the files
 
-In addition, you can create the targets pre-install and post-install, to do any operations before or after the actual installation and registration. The variables NAME and VERSION are needed for the registration. If you want to allow a user to install the same program under a different name, you can use:
+In addition, you can create the targets pre-install and post-install, to do any operations before or after the actual installation and registration. The variables SIPAMA_NAME and SIPAMA_VERSION are needed for the registration. If you want to allow a user to install the same program under a different name, you can use:
 
-NAME?=myprogram
+SIPAMA_NAME?=myprogram
 
-so that the user can override the NAME variable during installation:
+so that the user can override the SIPAMA_NAME variable during installation:
 
-pkinst.sh PREFIX=/path/to/different/install/dir NAME=myotherprogram
+pkinst.sh PREFIX=/path/to/different/install/dir SIPAMA_NAME=myotherprogram
 
 The include directive at the beginning of the file needs to be at the beginning and without it, the installation will not work.
 

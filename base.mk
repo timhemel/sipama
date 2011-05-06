@@ -1,8 +1,11 @@
+sipamarelease:
+	@echo 00001
+
 name:
-	@echo ${NAME}
+	@echo ${SIPAMA_NAME}
 
 version:
-	@echo ${VERSION}
+	@echo ${SIPAMA_VERSION}
 
 prefix:
 	@echo ${PREFIX}
@@ -16,11 +19,11 @@ install: pre-install do-install register post-install
 endif
 
 register:
-	@echo PREFIX=$(PREFIX) > $(SIPAMA_DBDIR)/${NAME}
-	@cat package.mk >> $(SIPAMA_DBDIR)/${NAME}
+	@echo PREFIX=$(PREFIX) > $(SIPAMA_DBDIR)/${SIPAMA_NAME}
+	@cat package.mk >> $(SIPAMA_DBDIR)/${SIPAMA_NAME}
 
 deinstall: do-deinstall
-	@rm $(SIPAMA_DBDIR)/${NAME}
+	@rm $(SIPAMA_DBDIR)/${SIPAMA_NAME}
 
 pre-install: ;
 
