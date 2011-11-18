@@ -5,7 +5,7 @@ all:
 	@echo Use ${MAKE} install to install the software
 
 check-db-upgrade:
-	[ -d ${CONFIGDIR}/db ] && sh upgradedb.sh
+	( [ -d ${CONFIGDIR}/db ] && sh upgradedb.sh ) || true
 
 install: check-db-upgrade
 	mkdir -p ${CONFIGDIR}
