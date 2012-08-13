@@ -7,6 +7,9 @@ name:
 version:
 	@echo ${SIPAMA_VERSION}
 
+info:
+	@echo ${SIPAMA_INFO}
+
 prefix:
 	@echo ${PREFIX}
 
